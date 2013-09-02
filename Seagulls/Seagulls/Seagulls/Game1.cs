@@ -22,9 +22,10 @@ namespace Seagulls
         Sprite Background_GAME;
         //Enemy eSeagull;
         List<Enemy> Enemies;
-        Player pCursor;
+        Player player;
 
-        static int MAXENEMIES = 5;
+        static float SPAWNTIMER = 3;
+        float spawnTimer = SPAWNTIMER;
 
         public Game1()
         {
@@ -59,15 +60,10 @@ namespace Seagulls
             //eSeagull.LoadContent(this.Content);
 
             Enemies = new List<Enemy>();
-            //for (int i = 0; i < MAXENEMIES; i++) { Enemies.Add(new Enemy(i)); }
-            for (int i = 0; i < MAXENEMIES; i++) { Enemies.Add(new Enemy()); }
-            foreach (Enemy enemy in Enemies) 
-            {
-                enemy.LoadContent(this.Content);
-            }
+            LoadEnemies();
 
-            pCursor = new Player();
-            pCursor.LoadContent(this.Content);
+            player = new Player();
+            player.LoadContent(this.Content);
 
             Background_GAME = new Sprite();
             Background_GAME.LoadContent(this.Content, "bgGame");
@@ -94,12 +90,17 @@ namespace Seagulls
                 this.Exit();
 
             // TODO: Add your update logic here
+            spawnTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
             //eSeagull.Update(gameTime);
             foreach (Enemy enemy in Enemies) 
             { 
                 enemy.Update(gameTime); 
             }
-            pCursor.Update(gameTime);
+            LoadEnemies();
+            HandleGame();
+
+            player.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -115,7 +116,7 @@ namespace Seagulls
             
             // TODO: Add your drawing code here
             Background_GAME.Draw(this.spriteBatch);
-            pCursor.DrawGUI(this.spriteBatch);
+            player.DrawGUI(this.spriteBatch);
 
             //eSeagull.Draw(this.spriteBatch);
             foreach (Enemy enemy in Enemies) 
@@ -123,12 +124,96 @@ namespace Seagulls
                 enemy.Draw(this.spriteBatch); 
             }
 
-            pCursor.Draw(this.spriteBatch);
+            player.Draw(this.spriteBatch);
             
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
-        void DetectCollision() { }
+        public void LoadEnemies() 
+        {
+            Random rnd = new Random();
+            Vector2 Speed, Pos, Dir;
+            
+            int Enemy_SPEED_X, Enemy_SPEED_Y,
+                Enemy_POSITION_X, Enemy_POSITION_Y, 
+                Enemy_DIRECTION_X, Enemy_DIRECTION_Y;
+            bool randX, randY;
+
+            // Random speed, x, y
+            Enemy_SPEED_X = rnd.Next(200, 400);
+            Enemy_SPEED_Y = rnd.Next(150, 300);
+            Enemy_POSITION_X = rnd.Next(30, 750);
+            Enemy_POSITION_Y = rnd.Next(300);
+
+            // Random dx, dy
+            randX = rnd.Next(0, 2) == 0;
+            randY = rnd.Next(0, 2) == 0;
+
+            if (!randX) { Enemy_DIRECTION_X = -1; }
+            else { Enemy_DIRECTION_X = 1; }
+            if (!randY) { Enemy_DIRECTION_Y = -1; }
+            else { Enemy_DIRECTION_Y = 1; }
+
+            Speed.X = Enemy_SPEED_X;
+            Speed.Y = Enemy_SPEED_Y;
+            Pos.X = Enemy_POSITION_X;
+            Pos.Y = Enemy_POSITION_Y;
+            Dir.X = Enemy_DIRECTION_X;
+            Dir.Y = Enemy_DIRECTION_Y;
+
+            if (spawnTimer > SPAWNTIMER)
+            {
+                spawnTimer = 0;
+                if (Enemies.Count() < 10)
+                {
+                    Enemies.Add(new Enemy(this.Content, Speed, Pos, Dir));
+                }
+            }
+
+            for (int i = 0; i < Enemies.Count; i++)
+            {
+                if (!Enemies[i].Active)
+                {
+                    Enemies.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
+        public void HandleGame() 
+        {
+            int enemyX, enemyY, enemyW, enemyH;
+            if (player.MouseClick)
+            {
+                for (int i = 0; i < Enemies.Count; i++)
+                {
+                    enemyX = (int)Enemies[i].Position.X;
+                    enemyY = (int)Enemies[i].Position.Y;
+                    enemyW = (int)Enemies[i].Size.Width;
+                    enemyH = (int)Enemies[i].Size.Height;
+
+                    if (CheckCollission(player.x, player.y, enemyX, enemyY, enemyW, enemyH))
+                    {
+                        if (player.misses == 0) player.score += 300;
+                        else player.score += (300 / player.misses);
+                        Enemies[i].Active = false;
+                    }
+                    else player.misses++;
+                }
+            }
+        }
+
+        public bool CheckCollission(int aimX, int aimY, int tX, int tY, int tW, int tH) 
+        {
+            if ((aimY > tY) && (aimY < (tY + tH)))
+            {
+                if ((aimX > tX) && (aimX < (tX + tW))) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

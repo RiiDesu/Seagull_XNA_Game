@@ -13,34 +13,20 @@ namespace Seagulls
 {
     class Enemy : Sprite
     {
-        const string Enemy_ASSETNAME = "enemy";
-        int START_POSITION_X;
-        int START_POSITION_Y;
-        int Enemy_SPEED;
-        Vector2 mDirection = Vector2.Zero;
-        Vector2 mSpeed = Vector2.Zero;
+        string Enemy_ASSETNAME = "EnemyRight";
+        private Vector2 mDirection = Vector2.Zero;
+        private Vector2 mSpeed = Vector2.Zero;
+        public bool Active = true;
 
-        //public Enemy(int ID) { }
-        public Enemy() { }
-        
-        public void LoadContent(ContentManager theContentManager)
+        public Enemy(ContentManager theContentManager, Vector2 theSpeed, Vector2 thePosition, Vector2 theDirection) 
         {
-            Random rnd = new Random();
+            mSpeed = theSpeed;
+            Position = thePosition;
+            mDirection = theDirection;
 
-            START_POSITION_X = rnd.Next(30, 750);
-            START_POSITION_Y = rnd.Next(300);
-            Enemy_SPEED = rnd.Next(150, 300);
-
-            Position = new Vector2(START_POSITION_X, START_POSITION_Y);
+            AssetLeft = "EnemyLeft";
+            AssetRight = "EnemyRight";
             base.LoadContent(theContentManager, Enemy_ASSETNAME);
-            
-            // random start direction
-            bool randX = rnd.Next(0, 2) == 0,
-                 randY = rnd.Next(0, 2) == 0;
-            if (!randX) { mDirection.X = -1; }
-            else { mDirection.X = 1; DrawFlipped(false, true); }
-            if (!randY) { mDirection.Y = -1; }
-            else { mDirection.Y = 1; }
         }
 
         public void Update(GameTime theGameTime)
@@ -54,18 +40,16 @@ namespace Seagulls
         {
             int MaxX = 800 - Size.Width;
             int MaxY = 350 - Size.Height;
-            mSpeed.X = Enemy_SPEED;
-            mSpeed.Y = Enemy_SPEED;
 
             if (Position.X > MaxX) //left
             {
                 mDirection.X = -1;
-                DrawFlipped(false, true);
+                //DrawFlipped(false, true);
             }
             else if (Position.X < 0) //right
             {
                 mDirection.X = 1;
-                DrawFlipped(false, true);
+                //DrawFlipped(false, true);
             }
 
             if (Position.Y > MaxY) //up

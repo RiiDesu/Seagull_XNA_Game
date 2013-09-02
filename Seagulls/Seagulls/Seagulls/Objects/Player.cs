@@ -23,11 +23,10 @@ namespace Seagulls
         private MouseState aMouse;
         private Stopwatch Timer;
         private TimeSpan time;
-        private int iScore, iMisses, ClickCooldown;
-        private bool active;
+        private int ClickCooldown;
 
-        public int x, y;
-        public bool MouseClick;
+        public int x, y, score, misses;
+        public bool MouseClick, active;
 
         public void LoadContent(ContentManager theContentManager) 
         {
@@ -42,7 +41,7 @@ namespace Seagulls
             
             game_font = theContentManager.Load<SpriteFont>("font");
             MouseClick = false;
-            iScore = 0; iMisses = 0;
+            score = 0; misses = 0;
             Timer = new Stopwatch();
             Timer.Start();
         }
@@ -81,8 +80,8 @@ namespace Seagulls
 
             //Score
             string Score = "Score: ", Misses = "Misses: ";
-            Score += iScore;
-            Misses += iMisses;
+            Score += score;
+            Misses += misses;
 
             theSpriteBatch.DrawString(game_font, Score, new Vector2(10, 370), Color.White);
             theSpriteBatch.DrawString(game_font, Misses, new Vector2(10, 385), Color.White);
