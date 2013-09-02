@@ -16,13 +16,27 @@ namespace Seagulls
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        //enum Bstate { IDLE, CLICKED, DISABLED }
+        /*const int BTN_GAME_QUIT = 401,
+                  BTN_GAME_PAUSE = 402,
+                  BTN_MENU_START = 403,
+                  BTN_MENU_OPTIONS = 404,
+                  BTN_MENU_EXIT = 405,
+                  BTN_SCORE_RETRY = 406,
+                  BTN_SCORE_RETURN = 407,
+                  BTN_OPTIONS_MUSIC_ON = 408,
+                  BTN_OPTIONS_MUSIC_OFF = 409;*/
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         Sprite Background_GAME;
-        //Enemy eSeagull;
         List<Enemy> Enemies;
         Player player;
+        Button button;
+
+        SoundEffect BGM_Score, SFX_hit, SFX_shoot, SFX_time, SFX_spawn;
+        Song BGM_Game, BGM_Menu;
 
         static float SPAWNTIMER = 3;
         float spawnTimer = SPAWNTIMER;
@@ -56,9 +70,6 @@ namespace Seagulls
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            //eSeagull = new Enemy();
-            //eSeagull.LoadContent(this.Content);
-
             Enemies = new List<Enemy>();
             LoadEnemies();
 
@@ -67,6 +78,20 @@ namespace Seagulls
 
             Background_GAME = new Sprite();
             Background_GAME.LoadContent(this.Content, "bgGame");
+
+            button = new Button();
+            button.LoadContent(this.Content, "Buttons/game_quit", 715, 394);
+
+            SFX_hit = this.Content.Load<SoundEffect>("Sound/hit");
+            SFX_shoot = this.Content.Load<SoundEffect>("Sound/shoot");
+            SFX_time = this.Content.Load<SoundEffect>("Sound/time");
+            SFX_spawn = this.Content.Load<SoundEffect>("Sound/spawn");
+
+            BGM_Game = this.Content.Load<Song>("Sound/Game");
+            BGM_Menu = this.Content.Load<Song>("Sound/Menu");
+            BGM_Score = this.Content.Load<SoundEffect>("Sound/Score");
+
+            MediaPlayer.Play(BGM_Game);
         }
 
         /// <summary>
@@ -98,6 +123,7 @@ namespace Seagulls
                 enemy.Update(gameTime); 
             }
             LoadEnemies();
+            button.Update();
             HandleGame();
 
             player.Update(gameTime);
@@ -117,6 +143,7 @@ namespace Seagulls
             // TODO: Add your drawing code here
             Background_GAME.Draw(this.spriteBatch);
             player.DrawGUI(this.spriteBatch);
+            button.Draw(this.spriteBatch);
 
             //eSeagull.Draw(this.spriteBatch);
             foreach (Enemy enemy in Enemies) 
@@ -168,6 +195,7 @@ namespace Seagulls
                 if (Enemies.Count() < 10)
                 {
                     Enemies.Add(new Enemy(this.Content, Speed, Pos, Dir));
+                    SFX_spawn.Play();
                 }
             }
 
@@ -177,15 +205,18 @@ namespace Seagulls
                 {
                     Enemies.RemoveAt(i);
                     i--;
+                    SFX_hit.Play();
                 }
             }
         }
 
         public void HandleGame() 
         {
+            //if (!player.active) { MediaPlayer.Play(BGM_Menu); }
             int enemyX, enemyY, enemyW, enemyH;
             if (player.MouseClick)
             {
+                SFX_shoot.Play();
                 for (int i = 0; i < Enemies.Count; i++)
                 {
                     enemyX = (int)Enemies[i].Position.X;
@@ -201,6 +232,12 @@ namespace Seagulls
                     }
                     else player.misses++;
                 }
+            }
+
+            if (button.clicked) 
+            {
+                SFX_time.Play();
+                this.Exit();
             }
         }
 

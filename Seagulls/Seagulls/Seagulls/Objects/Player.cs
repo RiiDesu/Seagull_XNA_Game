@@ -83,8 +83,8 @@ namespace Seagulls
             Score += score;
             Misses += misses;
 
-            theSpriteBatch.DrawString(game_font, Score, new Vector2(10, 370), Color.White);
-            theSpriteBatch.DrawString(game_font, Misses, new Vector2(10, 385), Color.White);
+            theSpriteBatch.DrawString(game_font, Score, new Vector2(10, 420), Color.White);
+            theSpriteBatch.DrawString(game_font, Misses, new Vector2(10, 435), Color.White);
 
             //Timer
             string Time;
@@ -98,7 +98,7 @@ namespace Seagulls
                 active = false;
             }
 
-            theSpriteBatch.DrawString(game_font, Time, new Vector2(10, 400), Color.White);
+            theSpriteBatch.DrawString(game_font, Time, new Vector2(10, 450), Color.White);
         }
     }
 }

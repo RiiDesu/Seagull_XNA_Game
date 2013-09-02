@@ -11,19 +11,11 @@ namespace Seagulls
 {
     class Button : Sprite
     {
-        enum Bstate { IDLE, CLICKED, DISABLED }
-        const int BUTTON_COUNT = 1,
-                  BTN_GAME_QUIT = 401,
-                  BTN_GAME_PAUSE = 402,
-                  BTN_MENU_START = 403,
-                  BTN_MENU_OPTIONS = 404,
-                  BTN_MENU_EXIT = 405,
-                  BTN_SCORE_RETRY = 406,
-                  BTN_SCORE_RETURN = 407,
-                  BTN_OPTIONS_MUSIC_ON = 408,
-                  BTN_OPTIONS_MUSIC_OFF = 409;
-        
         private string button_ASSETNAME;
+        private MouseState mouse;
+        private MouseState oldMouse;
+        public Rectangle Area;
+        public bool clicked = false;
 
         public void LoadContent(ContentManager theContentManager, string theAssetName, int x, int y) 
         {
@@ -32,6 +24,25 @@ namespace Seagulls
             button_ASSETNAME = theAssetName;
 
             base.LoadContent(theContentManager, button_ASSETNAME);
+            Area.X = x;
+            Area.Y = y;
+            Area.Width = Size.Width;
+            Area.Height = Size.Height;
+        }
+
+        public void Update() 
+        {
+            mouse = Mouse.GetState();
+            clicked = false;
+
+            if (mouse.LeftButton == ButtonState.Released && (oldMouse.LeftButton == ButtonState.Pressed))
+            {
+                if (Area.Contains(new Point(mouse.X, mouse.Y)))
+                {
+                    clicked = true;
+                }
+            }
+            oldMouse = mouse;
         }
     }
 }
