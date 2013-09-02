@@ -3,14 +3,16 @@ Seagull_XNA_Game
 XNA Game Studio 4.0 Download: http://www.microsoft.com/en-GB/download/details.aspx?id=23714
 A simple Seagull Shooter.
 
-================
+________________
   Known Bugs
-================
+________________
+
 - Multiple Enemies on the screen causes the miss counter to go up by the amount of enemies on the screen that you didn't hit with a single click.
 
-================
+________________
      To Do
-================
+________________
+
 - Add GameScreens (Menu, Game, Score, Options)
 - Add Music and Sound Effects
 - Make functional Menu with 3 Buttons(Start Game, Options, Exit Game)
