@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Seagulls
 {
@@ -44,12 +36,10 @@ namespace Seagulls
             if (Position.X > MaxX) //left
             {
                 mDirection.X = -1;
-                //DrawFlipped(false, true);
             }
             else if (Position.X < 0) //right
             {
                 mDirection.X = 1;
-                //DrawFlipped(false, true);
             }
 
             if (Position.Y > MaxY) //up

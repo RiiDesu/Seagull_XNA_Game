@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
 
 namespace Seagulls
 {
@@ -65,7 +58,7 @@ namespace Seagulls
                 if ((aMouse.LeftButton == ButtonState.Pressed) && (ClickCooldown <= 0))
                 {
                     MouseClick = true;
-                    ClickCooldown = 30;
+                    ClickCooldown = 60;
                 }
                 else { MouseClick = false; }
             }
@@ -74,7 +67,7 @@ namespace Seagulls
         public void DrawGUI(SpriteBatch theSpriteBatch) 
         {
             //Cooldown Bar
-            PosCoolDownBar.Width = ClickCooldown * 10;
+            PosCoolDownBar.Width = ClickCooldown * 5;
             theSpriteBatch.Draw(sCoolDownFrame, PosCoolDownFrame, Color.White);
             theSpriteBatch.Draw(sCoolDownBar, PosCoolDownBar, Color.Red);
 
