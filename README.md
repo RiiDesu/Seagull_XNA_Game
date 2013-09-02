@@ -14,15 +14,22 @@ ________________
 ________________
 
 - Add GameScreens (Menu, Game, Score, Options)
-- Add Music and Sound Effects
 - Make functional Menu with 3 Buttons(Start Game, Options, Exit Game)
 - Make functional Pause/Quit buttons in-game.
+- Score Screen Displays Background and Return to Menu.
+- Score Screen: Retry, Export Button
 
 Maybe
-- Export scores to a .txt file for local highscores
-- Score Screen with local highscores displaying
-- Functional Score Screen buttons
+- Button Click Sounds
+- Add to Menu_Play: Easy, Normal, Hard
+- Add Specific Difficulty Music: Easy, Normal, Hard
+- Implement Difficulties
+- Add Options: Music On/Off, Username
 
 Probably not
+- Export scores to a .txt file for local highscores
+- Score Screen with local highscores displaying
+
+Most likely not
 - Make functional Score Screen with Highscores
 - Highscores
