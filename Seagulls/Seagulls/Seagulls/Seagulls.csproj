@@ -108,7 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\Button.cs" />
-    <Compile Include="Objects\Control.cs" />
     <Compile Include="Objects\Enemy.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
