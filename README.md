@@ -15,27 +15,35 @@ ________________
 
 Must Have
 - Fix misses bug
+- Fix up cooldown bar
 - Pause button ingame
 - Menu with Start and Quit
 - Display Score Screen after time's up.
-- Retry button at Score Screen
+- Retry & Return to Menu button at Score Screen
+- Seagull Multipliers(livespan left, current speed, size)
+- Seagull Timer(livespan)
+- Lives
 
 Likely
 - Menu with Options
-- Score Screen Displays Background and Return to Menu.
-- Score Screen: Retry, Export Button
+- Difficulties: Easy, Normal. Hard
+- Difficulty specific soundtracks
+- Waves (Decreasing Enemy timers)
+- Upgrades (Decrease cooldown, decrease misses penalty)
+- Commentary on scores
 
 Maybe
-- Button Click Sounds
-- Add to Menu_Play: Easy, Normal, Hard
-- Add Specific Difficulty Music: Easy, Normal, Hard
-- Implement Difficulties
-- Add Options: Music On/Off, Username
+- Different color seagulls.
+- Split between waves mode and timed mode
+- Button Click sounds
+- Music On/Off options
 
 Probably not
+- Set username
+- Score Screen: Save to Local Scores button
 - Export scores to a .txt file for local highscores
 - Score Screen with local highscores displaying
 
 Most likely not
 - Make functional Score Screen with Highscores
-- Highscores
+- Online Highscores
