@@ -13,9 +13,15 @@ ________________
      To Do
 ________________
 
-- Add GameScreens (Menu, Game, Score, Options)
-- Make functional Menu with 3 Buttons(Start Game, Options, Exit Game)
-- Make functional Pause/Quit buttons in-game.
+Must Have
+- Fix misses bug
+- Pause button ingame
+- Menu with Start and Quit
+- Display Score Screen after time's up.
+- Retry button at Score Screen
+
+Likely
+- Menu with Options
 - Score Screen Displays Background and Return to Menu.
 - Score Screen: Retry, Export Button
 
