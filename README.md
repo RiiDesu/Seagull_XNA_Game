@@ -4,22 +4,21 @@ XNA Game Studio 4.0 Download: http://www.microsoft.com/en-GB/download/details.as
 A simple Seagull Shooter.
 
 ________________
-  Known Bugs
+Known Bugs
 ________________
 
-- Multiple Enemies on the screen causes the miss counter to go up by the amount of enemies on the screen that you didn't hit with a single click.
-
+- None
 ________________
-     To Do
+To Do
 ________________
 
 Must Have
-- Fix misses bug
-- Fix up cooldown bar
 - Pause button ingame
 - Menu with Start and Quit
 - Display Score Screen after time's up.
 - Retry & Return to Menu button at Score Screen
+ 
+Do Want
 - Seagull Multipliers(livespan left, current speed, size)
 - Seagull Timer(livespan)
 - Lives
