@@ -7,43 +7,37 @@ ________________
 Known Bugs
 ________________
 
-- None
+- Bad Shutdown (Exception??)
 
 ________________
 To Do
 ________________
 
 Must Have
-- Pause button ingame
-- Menu with Start and Quit
-- Display Score Screen after time's up.
-- Retry & Return to Menu button at Score Screen
- 
-Do Want
+
+Might Have
 - Seagull Multipliers(livespan left, current speed, size)
 - Seagull Timer(livespan)
-- Lives
+- Player Lives
 
-Likely
+Should Have
 - Menu with Options
 - Difficulties: Easy, Normal. Hard
 - Difficulty specific soundtracks
 - Waves (Decreasing Enemy timers)
 - Upgrades (Decrease cooldown, decrease misses penalty)
-- Commentary on scores
 
-Maybe
+Could Have
 - Different color seagulls.
 - Split between waves mode and timed mode
-- Button Click sounds
 - Music On/Off options
 
-Probably not
+Would Like
 - Set username
 - Score Screen: Save to Local Scores button
 - Export scores to a .txt file for local highscores
 - Score Screen with local highscores displaying
 
-Most likely not
+Won't Have
 - Make functional Score Screen with Highscores
 - Online Highscores
