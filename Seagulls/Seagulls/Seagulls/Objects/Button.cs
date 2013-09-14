@@ -28,6 +28,12 @@ namespace Seagulls
         public void Update() 
         {
             mouse = Mouse.GetState();
+
+            Area.X = (int)Position.X;
+            Area.Y = (int)Position.Y;
+            Area.Width = Size.Width;
+            Area.Height = Size.Height;
+
             clicked = false;
 
             if (mouse.LeftButton == ButtonState.Released && (oldMouse.LeftButton == ButtonState.Pressed))

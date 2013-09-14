@@ -14,10 +14,12 @@ namespace Seagulls
         private Rectangle PosCoolDownBar, PosCoolDownFrame;
         private SpriteFont game_font;
         private MouseState aMouse;
-        private Stopwatch Timer;
         private TimeSpan time;
         private int ClickCooldown;
+        private float barWidth;
+        private static int ReloadTime = 60;
 
+        public Stopwatch Timer;
         public int x, y, score, misses;
         public bool MouseClick, active;
 
@@ -29,8 +31,8 @@ namespace Seagulls
             
             sCoolDownBar = theContentManager.Load<Texture2D>("bar_bg");
             sCoolDownFrame = theContentManager.Load<Texture2D>("bar_Cooldown");
-            PosCoolDownBar = new Rectangle(250, 448, 300, 10);
-            PosCoolDownFrame = new Rectangle(248, 434, 304, 26);
+            PosCoolDownBar = new Rectangle(210, 448, 300, 10);
+            PosCoolDownFrame = new Rectangle(208, 434, 304, 26);
             
             game_font = theContentManager.Load<SpriteFont>("font");
             MouseClick = false;
@@ -58,16 +60,19 @@ namespace Seagulls
                 if ((aMouse.LeftButton == ButtonState.Pressed) && (ClickCooldown <= 0))
                 {
                     MouseClick = true;
-                    ClickCooldown = 60;
+                    ClickCooldown = ReloadTime;
                 }
                 else { MouseClick = false; }
+
+                float tickSize = 300 / (float)ReloadTime;
+                barWidth = (float)ClickCooldown * tickSize;
             }
         }
 
         public void DrawGUI(SpriteBatch theSpriteBatch) 
         {
             //Cooldown Bar
-            PosCoolDownBar.Width = ClickCooldown * 5;
+            PosCoolDownBar.Width = (int)barWidth;
             theSpriteBatch.Draw(sCoolDownFrame, PosCoolDownFrame, Color.White);
             theSpriteBatch.Draw(sCoolDownBar, PosCoolDownBar, Color.Red);
 
@@ -92,6 +97,15 @@ namespace Seagulls
             }
 
             theSpriteBatch.DrawString(game_font, Time, new Vector2(10, 450), Color.White);
+        }
+
+        public void Reset() 
+        {
+            active = true;
+            score = 0;
+            misses = 0;
+            Timer.Restart();
+            ClickCooldown = 0;
         }
     }
 }

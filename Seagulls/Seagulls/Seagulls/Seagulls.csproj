@@ -16,8 +16,8 @@
     <XnaProfile>HiDef</XnaProfile>
     <XnaCrossPlatformGroupID>62fe1526-7676-4e01-9446-8dfddbd134bf</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>noneed\Game.ico</ApplicationIcon>
-    <Thumbnail>noneed\GameThumbnail.png</Thumbnail>
+    <ApplicationIcon>System\Game.ico</ApplicationIcon>
+    <Thumbnail>System\GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -111,13 +111,13 @@
     <Compile Include="Objects\Enemy.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="noneed\Program.cs" />
+    <Compile Include="System\Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Objects\Sprite.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="noneed\Game.ico" />
-    <Content Include="noneed\GameThumbnail.png" />
+    <Content Include="System\Game.ico" />
+    <Content Include="System\GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SeagullsContent\SeagullsContent.contentproj">

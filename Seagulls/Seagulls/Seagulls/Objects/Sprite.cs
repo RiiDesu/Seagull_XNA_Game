@@ -19,8 +19,7 @@ namespace Seagulls
             set 
             {
                 mScale = value;
-                Size = new Rectangle(0, 0, (int)(mSpriteTexture.Width * Scale), 
-                                     (int)(mSpriteTexture.Height * Scale));
+                Size = new Rectangle(0, 0, (int)(mSpriteTexture.Width * Scale), (int)(mSpriteTexture.Height * Scale));
             }
         }
 
